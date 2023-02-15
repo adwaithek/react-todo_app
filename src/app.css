@@ -1,0 +1,67 @@
+
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #020631;
+    color: white;
+}
+
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+ 
+  .todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .todo-list li {
+    width: 500px;
+    margin-left: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .todo-list li.completed span {
+    text-decoration: line-through;
+  }
+  
+  .todo-list li button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .adbtn{
+    border: none;
+    height: 38px;
+    width: 50px;
+    border-radius: 0px 6px 6px 0px;
+    background-color: #a0a6eb;
+    color: white;
+    cursor: pointer;
+    
+  }
+  input{
+    margin-bottom: 20px;
+    height: 33px;
+    width: 300px;
+    border-radius: 6px 0px 0px 6px;
+    border: none;
+    font-size: 17px;
+    padding-bottom: 4px;
+    
+  }
+  span{
+    cursor: pointer;
+  }

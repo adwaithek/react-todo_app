@@ -1,69 +1,49 @@
-import React from 'react';
 
-import { useState } from 'react';
+
+import React, { useState } from "react";
+import "./app.css";
 
 function App() {
-  const [toDos,setToDos]=useState([])
-  const [toDo,setToDo]=useState('')
+  const [todos, setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState("");
+
+  const handleNewTodo = (e) => {
+    setNewTodo(e.target.value);
+  };
+
+  const addTodo = () => {
+    setTodos([...todos, { title: newTodo, completed: false }]);
+    setNewTodo("");
+  };
+
+  const handleCompletedTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos[index].completed = !newTodos[index].completed;
+    setTodos(newTodos);
+  };
+
+  const handleDeleteTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
   return (
-    <div className="app">
-      <div className="mainHeading">
-        <h1>ToDo List</h1>
+    <div className="App">
+      <h1>To-Do List</h1>
+      <div className="input-container">
+        <input placeholder="" type="text" value={newTodo} onChange={handleNewTodo}   />
+        <button className="adbtn" onClick={addTodo}>ADD</button>
       </div>
-      <div className="subHeading">
-        <br />
-        <h2>Whoop, it's Wednesday 🌝 ☕ </h2>
-      </div>
-      <div className="input">
-        <input value={toDo} onChange={(e)=>setToDo(e.target.value)} type="text" placeholder="🖊️ Add item..." />
-        <i onClick={()=>setToDos([...toDos,{id:Date.now(),text:toDo,status:false}])} className="fas fa-plus"></i>
-      </div>
-
-
-      <div className="todos">
-{toDos.map((obj)=>{
-return(
-  <div className="todo">
-  <div className="left">
-    <input  onChange={(e)=>{
-      console.log(e.target.value);
-      setToDos(toDos.filter(obj2=>{
-        if(obj2.id===obj.id){
-          obj2.status=e.target.checked
-        }
-        return obj2
-
-      }))
-    }}
-    
-    
-    value={obj.status} type="checkbox" name="" id="" />
-    <p>{obj.text}</p>
-   
-  </div>
-  <div className="right">
-    <i id={obj.id} className="fas fa-times" onClick={(e)=>{
-              let index= toDos.findIndex(obj=>{return obj.id==e.target.id})
-              if (index !== -1) {
-                toDos.splice(index, 1);
-                setToDos([...toDos]);
-              }
-            }}></i>
-  </div>
-</div>
-
-)
-})}
-{toDos.map((obj)=>{
-  if(obj.status){
-    return(
-      <h1>{obj.text}</h1>
-    )
-  }
-})}
-</div>
-</div>
-     
+      <ul className="todo-list">
+        {todos.map((todo, index) => (
+          <li key={index} className={todo.completed ? "completed" : ""}>
+            <span onClick={() => handleCompletedTodo(index)}>{todo.title}</span>
+            <button style={{color:"white"}} onClick={() => handleDeleteTodo(index)}>X</button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
